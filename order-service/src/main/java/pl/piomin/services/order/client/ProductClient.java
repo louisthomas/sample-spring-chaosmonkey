@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import pl.piomin.services.order.model.Product;
 
-@FeignClient(name = "product-service")
+@FeignClient(name = "product-service", url = "https://product-service.cfapps.io/")
 public interface ProductClient {
 
 	@PutMapping("/products")

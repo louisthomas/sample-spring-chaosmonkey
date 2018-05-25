@@ -2,21 +2,12 @@ spring:
   application:
     name: order-service
   datasource:
-    url: jdbc:mysql://192.168.99.100:33306/chaos?useSSL=false
-    username: chaos
-    password: chaos123
+    url: ${vcap.services.cleardb.credentials.jdbcUrl:jdbc:mysql://127.0.0.1:33306/chaos?useSSL=false}
+    username: ${vcap.services.cleardb.credentials.username:chaos}
+    password: ${vcap.services.cleardb.credentials.password:chaos123}
     driverClassName: com.mysql.jdbc.Driver
-  jpa:
     hibernate:
       ddl-auto: update
-    
-server:
-  port: 8091
-
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://localhost:8761/eureka/
 
 logging:
   level:
@@ -55,4 +46,4 @@ management:
   endpoints:
     web:
       exposure:
-        include: health,info,chaosmonkey
+        include: "*"

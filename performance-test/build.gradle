@@ -1,6 +1,10 @@
 apply plugin: 'java-library'
 apply plugin: 'scala'
 
+repositories {
+   mavenCentral()
+}
+
 dependencies {
     testCompile group: 'io.gatling.highcharts', name: 'gatling-charts-highcharts', version: '2.3.0'
 }

@@ -1,0 +1,11 @@
+---
+applications:
+- name: super-order-service
+  memory: 1G
+  buildpack: java_buildpack
+  path: build/libs/order-service-0.0.1-SNAPSHOT.jar
+  services:
+    - order-db
+    - metric-fowarder
+  env:
+    SPRING_PROFILES_ACTIVE: chaos-monkey,cloud

@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 
 import pl.piomin.services.order.model.Customer;
 
-@FeignClient(name = "customer-service")
+@FeignClient(name = "customer-service", url = "https://super-customer-service.cfapps.io/")
 public interface CustomerClient {
 
 	@GetMapping("/customers/{id}")
