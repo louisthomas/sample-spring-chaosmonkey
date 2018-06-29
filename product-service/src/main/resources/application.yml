@@ -1,14 +1,11 @@
 spring:
   application:
     name: product-service
-  datasource:
-    url: ${vcap.services.cleardb.credentials.jdbcUrl:jdbc:mysql://127.0.0.1:33306/chaos?useSSL=false}
-    username: ${vcap.services.cleardb.credentials.username:chaos}
-    password: ${vcap.services.cleardb.credentials.password:chaos123}
-    driverClassName: com.mysql.jdbc.Driver
   jpa:
-    hibernate:
-      ddl-auto: update
+    generate-ddl: false
+  datasource:
+    initialize: false
+
 chaos:
   monkey:
     enabled: true
@@ -21,12 +18,12 @@ chaos:
     watcher:
       repository: true
       restController: true
+
+endpoints:
+  chaosmonkey:
+    enabled: true
       
 management:
-  endpoint:
-    chaosmonkey:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+  security:
+    enabled: false
+

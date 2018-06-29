@@ -1,49 +1,29 @@
 spring:
   application:
     name: order-service
+  jpa:
+    generate-ddl: false
   datasource:
-    url: ${vcap.services.cleardb.credentials.jdbcUrl:jdbc:mysql://127.0.0.1:33306/chaos?useSSL=false}
-    username: ${vcap.services.cleardb.credentials.username:chaos}
-    password: ${vcap.services.cleardb.credentials.password:chaos123}
-    driverClassName: com.mysql.jdbc.Driver
-    hibernate:
-      ddl-auto: update
+    initialize: false
 
-logging:
-  level:
-    de.codecentric: TRACE
-
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 5000
-        readTimeout: 5000
-        loggerLevel: basic
-  hystrix:
-    enabled: false
-
-ribbon:
-  ConnectTimeout: 5000
-  ReadTimeout: 5000
-                   
 chaos:
   monkey:
     enabled: true
     assaults:
-      level: 8
+      level: 7
       latencyRangeStart: 1000
       latencyRangeEnd: 10000
       exceptionsActive: false
       killApplicationActive: true
     watcher:
       repository: true
-      
+      restController: true
+
+endpoints:
+  chaosmonkey:
+    enabled: true
+
 management:
-  endpoint:
-    chaosmonkey:
-      enabled: true
-  endpoints:
-    web:
-      exposure:
-        include: "*"
+  security:
+    enabled: false
+

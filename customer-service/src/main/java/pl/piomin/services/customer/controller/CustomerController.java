@@ -31,7 +31,7 @@ public class CustomerController {
 	
 	@GetMapping("/{id}")
 	public Customer findById(@PathVariable("id") Integer id) {
-		return repository.findById(id).get();
+		return repository.findOne(id);
 	}
 	
 }

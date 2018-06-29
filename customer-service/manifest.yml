@@ -1,11 +1,12 @@
 ---
 applications:
-- name: super-customer-service
+- name: customer-service
   memory: 1G
-  buildpack: java_buildpack
+  buildpack: java_buildpack_offline
   path: build/libs/customer-service-0.0.1-SNAPSHOT.jar
   services:
     - customer-db
     - metric-fowarder
+    - service-registry
   env:
     SPRING_PROFILES_ACTIVE: chaos-monkey,cloud

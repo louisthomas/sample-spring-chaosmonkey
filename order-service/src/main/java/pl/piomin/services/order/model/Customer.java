@@ -4,8 +4,8 @@ public class Customer {
 
 	private Integer id;
 	private String name;
-	private int availableFunds;
-	private CustomerType type;
+	private int funds;
+	private String type;
 
 	public Integer getId() {
 		return id;
@@ -23,19 +23,19 @@ public class Customer {
 		this.name = name;
 	}
 
-	public int getAvailableFunds() {
-		return availableFunds;
+	public int getFunds() {
+		return funds;
 	}
 
-	public void setAvailableFunds(int availableFunds) {
-		this.availableFunds = availableFunds;
+	public void setFunds(int funds) {
+		this.funds = funds;
 	}
 
-	public CustomerType getType() {
+	public String getType() {
 		return type;
 	}
 
-	public void setType(CustomerType type) {
+	public void setType(String type) {
 		this.type = type;
 	}
 

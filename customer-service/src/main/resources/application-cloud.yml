@@ -1,0 +1,8 @@
+security:
+  basic:
+    enabled: false
+spring:
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    show-sql: true

@@ -35,12 +35,12 @@ public class OrderController {
 		Product product = productClient.findById(order.getProductId());
 		Customer customer = customerClient.findById(order.getCustomerId());
 		int totalPrice = order.getProductsCount() * product.getPrice();
-		if (customer != null && customer.getAvailableFunds() >= totalPrice && product.getCount() >= order.getProductsCount()) {
+		if (customer != null && customer.getFunds() >= totalPrice && product.getCount() >= order.getProductsCount()) {
 			order.setPrice(totalPrice);
 			order.setStatus(OrderStatus.ACCEPTED);
 			product.setCount(product.getCount() - order.getProductsCount());
 			productClient.update(product);
-			customer.setAvailableFunds(customer.getAvailableFunds() - totalPrice);
+			customer.setFunds(customer.getFunds() - totalPrice);
 			customerClient.update(customer);
 		} else {
 			order.setStatus(OrderStatus.REJECTED);
@@ -50,7 +50,7 @@ public class OrderController {
 	
 	@GetMapping("/{id}")
 	public Order findById(@PathVariable("id") Integer id) {
-		Optional<Order> order = repository.findById(id);
+		Optional<Order> order = Optional.of(repository.findOne(id));
 		if (order.isPresent()) {
 			Order o = order.get();
 			Product product = productClient.findById(o.getProductId());
@@ -67,5 +67,5 @@ public class OrderController {
 	public List<Order> history(@PathVariable("customerId") Integer customerId) {
 		return repository.findByCustomerId(customerId);
 	}
-	
+
 }
